@@ -1,0 +1,7 @@
+.idea/
+*.py[c]
+Python/
+__pycache__/
+build/
+Pipfile
+Pipfile.lock
