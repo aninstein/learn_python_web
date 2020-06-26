@@ -4,7 +4,7 @@
 ## 1. 搭建环境
 ### 1.1 虚拟环境（使用==pipenv==）
 使用pipenv搭建虚拟环境，来代替原来的virtualenv+requirement.txt的方式，完成虚拟环境的搭建。
-在项目的根目录，安装虚拟环境命令，随后会生成==Pipfile==：
+在项目的根目录，安装虚拟环境命令，随后会生成==Pipfile==文件与==Pipfile.lock==文件：
 ```
 pip install pipenv
 ```
@@ -17,6 +17,15 @@ pip install pipenv
 - ==pipenv graph== 查看依赖情况
 - ==pipenv install \<pkg>== 安装pip包到虚拟环境，可以使用此命令安装flask：==pipenv install flask==
 - ==pipenv update== 更新python包
+
+由于需要使用pipenv安装python依赖包，换成国内镜像，则修改Pipfile文件中的==url==为国内源，如换成清华的源：
+```
+[[source]]
+name = "pypi"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+verify_ssl = true
+```
+
 ## 2. hello world
 ### 2.1 hello world代码如下
 代码文件'run_app.py'
@@ -53,6 +62,19 @@ export FLASK_APP=run_app
 ```
 pipenv install python-dotenv
 ```
+安装了python-dotenv在项目的根目录下，简历两个环境变量文件：.env和.flaskenv，.env用于存放项目私有配置，.flaskenv用于存放项目普通配置，环境变量优先级：手动设置变量>.env变量>.flaskenv变量
+
+常用变量包括：
+```
+FLASK_APP=run_app
+FLASK_RUN_HOST=0.0.0.0
+FLASK_RUN_PORT=1234
+FLASK_ENV=development/production
+
+# 不建议手动设置
+FLASK_DEBUG=1
+```
+
 flask run默认只开启127.0.0.1，端口是5000
 ```
 flask run
@@ -62,6 +84,14 @@ flask run
 ```
 http://127.0.0.1:1234
 ```
+
+#### 2.2.4 代码调试与重加载
+在flask开启了debug之后，会有==werkzeug==可以进行代码自动加载，和使用PIN码在浏览器页面进行调试，为了加快重载速度，还可以安装==watchdog==，但注意仅限在开发环境：
+```
+pipenv install watchdog --dev
+```
+
+
 ## 3. 登陆页面
 ## 4. 表单验证
 ## 5. 前后台交互
