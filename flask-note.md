@@ -17,6 +17,7 @@ pip install pipenv
 - ==pipenv graph== 查看依赖情况
 - ==pipenv install \<pkg>== 安装pip包到虚拟环境，可以使用此命令安装flask：==pipenv install flask==
 - ==pipenv update== 更新python包
+- ==exit== 退出环境
 
 由于需要使用pipenv安装python依赖包，换成国内镜像，则修改Pipfile文件中的==url==为国内源，如换成清华的源：
 ```
@@ -160,7 +161,14 @@ ps：幂等，多次执行与执行一次的结果是一致的
 
 ### 3.2 Cookie
 Cookie是web服务器存储的某个以key/value存放数据格式的空间，在flask中添加cookie最简便的方法就是直接使用set_cookie的方法在Response类中返回cookie
-- 1. 先用make_response()构造一个
+1. 先用make_response()构造一个响应对象，实际上是实例化内置的Response类
+- header：一个Werkezeug的Header对象，响应的首部，可以像字典一样使用
+- status：状态码，文本
+- status_code：状态码，整型
+- mimetype：MIME类型，只包括内容类型部分
+	- 参考：http://www.lichangan.com/blog_article/mimetype.html
+- set_cookie()：设置一个cookie
+
 
 ## 4. 表单验证
 ## 5. 前后台交互
