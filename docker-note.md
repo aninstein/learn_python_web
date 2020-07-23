@@ -8,7 +8,7 @@ yum update
 
 # 设置镜像地址
 yum install -y yum-utils
-yum-config-manager -add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 
 # 安装依赖
 yum install -y yum-utils device-mapper-persistent-data lvm2
