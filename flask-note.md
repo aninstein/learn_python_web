@@ -2,7 +2,7 @@
 ---
 ---
 ## 1. 搭建环境
-### 1.1 虚拟环境（使用==pipenv==）
+### 1.1 使用pipenv
 使用pipenv搭建虚拟环境，来代替原来的virtualenv+requirement.txt的方式，完成虚拟环境的搭建。
 在项目的根目录，安装虚拟环境命令，随后会生成==Pipfile==文件与==Pipfile.lock==文件：
 ```
@@ -25,6 +25,41 @@ pip install pipenv
 name = "pypi"
 url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 verify_ssl = true
+```
+### 1.2 使用virtualenv
+由于pipenv还是一个在不断完善中的虚拟环境管理工具，因此有可能有Lock效率低的风险，使用比较成熟的==virtualenv==也可以创建虚拟环境
+```shell
+# 安装virtualenv
+pip install virtualenv
+
+# 在app目录下创建一个虚拟环境
+virtualenv venv
+
+# 用source激活virtualenv环境
+source venv/bin/activate
+
+# 取消激活状态
+deactivate
+```
+使用virtualenv需要在激活目录下放置一个依赖包的集合文件==requirement.txt==
+我们初始化一个virtualenv环境的时候，默认只是安装一个最简单的python环境，想要默认安装更多的第三方包，可以通过拓展脚本的方式进行添加。
+
+
+### 1.3 使用virtualenvwrapper
+virtualenvwrapp是virtualenv功能的拓展，有如下用途：
+- 用来管理全部的虚拟环境
+- 方便的创建删除和拷贝虚拟环境
+- 用单个命令就可以切换不同的虚拟环境
+- 可以用那个Tab补全虚拟环境
+- 支持用户粒度的钩子
+安装：
+```
+pip install virtualenvwrapper
+```
+初始化virtualenvwrapper
+```
+export WORKON_HOME=~/venv
+source /usr/local/bin/vitualenvwrapper.sh
 ```
 
 ## 2. hello world
