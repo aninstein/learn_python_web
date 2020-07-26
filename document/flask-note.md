@@ -204,6 +204,8 @@ Cookie是web服务器存储的某个以key/value存放数据格式的空间，�
 	- 参考：http://www.lichangan.com/blog_article/mimetype.html
 - set_cookie()：设置一个cookie
 
+### 3.3 Session
+
 
 ## 4. 表单验证
 ## 5. 前后台交互
