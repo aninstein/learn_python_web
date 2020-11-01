@@ -1,11 +1,11 @@
-#!/usr/bin/env pythonn
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 
-from flask import Flask, url_for, request, abort, redirect
+from flask import Flask, url_for, request, abort, redirect, render_template, make_response
 from config import setting
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="/web_ui", static_folder='/web_ui')
 app.config.from_object(setting)
 
 
@@ -72,7 +72,9 @@ def login():
         user_id = request.form.get('user_id')
         return 'User: {0} login'.format(user_id)
     elif request.method == 'GET':
-        return "Open Login Page"
+        # return "Open Login Page"
+        abort(404)
+        return ""
     else:
         abort(405)
         return "Not Page"
@@ -81,6 +83,21 @@ def login():
 """
 响应
 """
+# @app.errorhandler(404)
+# def not_found(error):
+#     return render_template('error404.html'), 404
+
+
+@app.errorhandler(404)
+def not_found2(error):
+    """
+    上面的not_found方法的显式写法，使用make_response方法
+    :param error:
+    :return:
+    """
+    resp = make_response(render_template('web_ui/error404.html'), 404)
+    return resp
+
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=1234)
+    app.run(host="127.0.0.1", port=1234)

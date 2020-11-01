@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple Page</title>
+    </head>
+    <body>
+        {# 注释 #}
+        <ul id="navigation">
+            {% for item in items %}
+                <li><a href="{{ item.href }}">{{ item['caption'] }}</a></li>
+            {% endfor %}
+        </ul>
+    </body>
+    <h1>{{ title | trim }}</h1>
+    <p>{{ content }}</p>
+</html>
